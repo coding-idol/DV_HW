@@ -1,18 +1,10 @@
 <html>
-<head>
+
  <meta charset="utf-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-
- <meta name="HandheldFriendly" content="True">
- <meta name="MobileOptimized" content="320">
-
- <title>Google Graph and CSV</title>
- <meta name="description" content="test">
-
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
  <script src="jquery.csv.min.js"></script>
- <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <script type="text/javascript">
   google.load('visualization', '1', { packages: ['corechart', 'controls'] });
@@ -29,7 +21,7 @@ function drawVisualization() {
          dataTable: data,
          options:{
             width: 1000, height: 560,
-            title: '그룹A_사고유형_차대사람',
+            title: '그룹A 사고유형 차대사람',
             titleTextStyle : {color: 'black', fontSize: 15},
 
             hAxis: {
