@@ -1,24 +1,15 @@
 <html>
-<head>
- <meta charset="utf-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-
- <meta name="HandheldFriendly" content="True">
- <meta name="MobileOptimized" content="320">
-
- <title>Google Graph and CSV</title>
- <meta name="description" content="test">
-
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
- <script src="jquery.csv.min.js"></script>
- <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-
-<script type="text/javascript">
-  google.load('visualization', '1', { packages: ['corechart', 'controls'] });
-</script>
-
-<script type="text/javascript">
+<meta charset="utf-8">
+<script type='text/javascript' src='http://www.google.com/jsapi'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="jquery.csv.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type='text/javascript'>google.load('visualization', '1', {'packages': ['geochart']});
+ 
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawVisualization);
+ 
+ 
 function drawVisualization() {
    $.get("/DV_HW/csv/11.csv", function(csvString) {
       var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
@@ -43,9 +34,7 @@ function drawVisualization() {
       chart__.draw();
    });
 }
-google.setOnLoadCallback(drawVisualization)
-</script>
 
-<div id="chart__"></div>
-  </body>
+ </script>
+ <div id='visualization'></div>
 </html>
