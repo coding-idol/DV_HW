@@ -1,17 +1,18 @@
 <html>
-<meta charset="utf-8">
-<script type='text/javascript' src='http://www.google.com/jsapi'></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="jquery.csv.min.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type='text/javascript'>google.load('visualization', '1', {'packages': ['geochart']});
- 
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawVisualization);
- 
- 
+
+ <meta charset="utf-8">
+ <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script src="jquery.csv.min.js"></script>
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+  google.load('visualization', '1', { packages: ['corechart', 'controls'] });
+</script>
+
+<script type="text/javascript">
 function drawVisualization() {
-   $.get("/DV_HW/csv/11.csv", function(csvString) {
+   $.get("11.csv", function(csvString) {
       var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
       var data = new google.visualization.arrayToDataTable(arrayData);
       var chart__ = new google.visualization.ChartWrapper({
@@ -20,7 +21,7 @@ function drawVisualization() {
          dataTable: data,
          options:{
             width: 1000, height: 560,
-            title: '사고유형대분류_경기',
+            title: '사고유형대분류_부산',
             titleTextStyle : {color: 'black', fontSize: 15},
 
             hAxis: {
@@ -31,11 +32,12 @@ function drawVisualization() {
             }
          }
       });
-     var chart = new google.visualization.GeoChart(document.getElementById('visualization'));
-     chart.draw(data, options);
+      chart__.draw();
    });
 }
+google.setOnLoadCallback(drawVisualization)
+</script>
 
- </script>
- <div id='visualization'></div>
+<div id="chart__"></div>
+  </body>
 </html>
