@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
 function drawVisualization() {
-   $.get("/DV_HW/csv/교통사고_단순횟수.csv", function(csvString) {
+   $.get("/DV_HW/csv/simple_count.csv", function(csvString) {
       var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
       var data = new google.visualization.arrayToDataTable(arrayData);
       var chart__ = new google.visualization.ChartWrapper({
