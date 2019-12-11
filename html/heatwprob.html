@@ -20,25 +20,24 @@
 
 <script type="text/javascript">
 function drawVisualization() {
-   $.get("/DV_HW/csv/1.csv", function(csvString) {
+   $.get("/DV_HW/csv/19.csv", function(csvString) {
       var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
       var data = new google.visualization.arrayToDataTable(arrayData);
       var chart__ = new google.visualization.ChartWrapper({
-         chartType: 'ColumnChart',
+         chartType: 'BubbleChart',
          containerId: 'chart__',
          dataTable: data,
          options:{
-            width: 1000, height: 560,
-            title: '교통사고 단순횟수',
+            width: 1000, height: 800,
+            title: '인구밀도대비발생률',
             titleTextStyle : {color: 'grey', fontSize: 20},
-
-            hAxis: {
-              title: '교통사고 발생 지역',
+            colorAxis: {colors: ['gray', 'red']},
+            vAxis: {
+              title: '교통사고 발생 횟수',
               minValue: 0
             },
-            vAxis: {
-              title: '피해자 수',
-              maxValue: 5000
+            hAxis: {
+              title: '인구 수',
             }
          }
       });

@@ -20,25 +20,23 @@
 
 <script type="text/javascript">
 function drawVisualization() {
-   $.get("/DV_HW/csv/1.csv", function(csvString) {
+   $.get("/DV_HW/csv/12.csv", function(csvString) {
       var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
       var data = new google.visualization.arrayToDataTable(arrayData);
       var chart__ = new google.visualization.ChartWrapper({
-         chartType: 'ColumnChart',
+         chartType: 'PieChart',
          containerId: 'chart__',
          dataTable: data,
          options:{
             width: 1000, height: 560,
-            title: '교통사고 단순횟수',
-            titleTextStyle : {color: 'grey', fontSize: 20},
+            title: '사고유형대분류_경기',
+            titleTextStyle : {color: 'black', fontSize: 15},
 
             hAxis: {
-              title: '교통사고 발생 지역',
-              minValue: 0
-            },
+
+              },
             vAxis: {
-              title: '피해자 수',
-              maxValue: 5000
+
             }
          }
       });
