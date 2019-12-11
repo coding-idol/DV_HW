@@ -1,0 +1,55 @@
+<html>
+
+ <meta charset="utf-8">
+ <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script src="jquery.csv.min.js"></script>
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+  google.load('visualization', '1', { packages: ['corechart', 'controls'] });
+</script>
+
+<script type="text/javascript">
+function drawVisualization() {
+   $.get("/DV_HW/csv/20.csv", function(csvString) {
+      var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+      var data = new google.visualization.arrayToDataTable(arrayData);
+      var chart__ = new google.visualization.ChartWrapper({
+         chartType: 'LineChart',
+         containerId: 'chart__',
+         dataTable: data,
+         series: {
+               // Gives each series an axis name that matches the Y-axis below.
+               0: {axis: '그룹A'},
+               1: {axis: '그룹B'}
+             },
+             axes: {
+               // Adds labels to each axis; they don't have to match the axis names.
+               y: {
+                 그룹B: {label: '그룹B 교통사고 발생량'},
+                 그룹A: {label: '그룹A 교통사고 발생량'}
+               }
+             },
+         options:{
+            width: 1200, height: 560,
+            title: '18년도그룹별 월별 교통사고 발생량',
+            titleTextStyle : {color: 'black', fontSize: 15},
+
+            hAxis: {
+
+              },
+            vAxis: {
+
+            }
+         }
+      });
+      chart__.draw();
+   });
+}
+google.setOnLoadCallback(drawVisualization)
+</script>
+
+<div id="chart__"></div>
+  </body>
+</html>
