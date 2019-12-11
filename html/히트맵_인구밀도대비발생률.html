@@ -1,0 +1,52 @@
+<html>
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <meta name="HandheldFriendly" content="True">
+ <meta name="MobileOptimized" content="320">
+
+ <title>Google Graph and CSV</title>
+ <meta name="description" content="test">
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script src="jquery.csv.min.js"></script>
+ <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+  google.load('visualization', '1', { packages: ['corechart', 'controls'] });
+</script>
+
+<script type="text/javascript">
+function drawVisualization() {
+   $.get("/DV_HW/csv/히트맵.csv", function(csvString) {
+      var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+      var data = new google.visualization.arrayToDataTable(arrayData);
+      var chart__ = new google.visualization.ChartWrapper({
+         chartType: 'BubbleChart',
+         containerId: 'chart__',
+         dataTable: data,
+         options:{
+            width: 1000, height: 800,
+            title: '인구밀도대비발생률',
+            titleTextStyle : {color: 'grey', fontSize: 20},
+            colorAxis: {colors: ['gray', 'red']},
+            vAxis: {
+              title: '교통사고 발생 횟수',
+              minValue: 0
+            },
+            hAxis: {
+              title: '인구 수',
+            }
+         }
+      });
+      chart__.draw();
+   });
+}
+google.setOnLoadCallback(drawVisualization)
+</script>
+
+<div id="chart__"></div>
+  </body>
+</html>
